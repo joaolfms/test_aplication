@@ -1,5 +1,5 @@
 # Escolha a imagem do Python3 mais recente baseada em Alpine
-FROM python:3.10-alpine
+FROM python:3.11.1-alpine3.16
 
 # Define o diretório de trabalho do container
 WORKDIR /app
@@ -8,12 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Instala o pip
-RUN apk update && apk add --no-cache \
-    build-base \
-    libffi-dev \
-    openssl-dev \
-    python3-dev && \
-    pip3 install --upgrade pip
+RUN apk update && pip3 install --upgrade pip
 
 # Instala as dependências do aplicativo
 RUN pip3 install -r requirements.txt
