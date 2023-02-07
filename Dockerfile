@@ -4,7 +4,7 @@ FROM alpine:3.12
 # Atualize os pacotes existentes e instale o Python 3 e o pip
 RUN apk update && \
     apk add python3 && \
-    apk add py3-pip apk upgrade
+    apk add py3-pip
 
 # Defina o diretório de trabalho
 WORKDIR /app
@@ -13,7 +13,7 @@ WORKDIR /app
 COPY . .
 
 # Instale as dependências do Python com o pip
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Defina o comando que será executado ao iniciar o contêiner
 CMD ["python3", "app.py"]
