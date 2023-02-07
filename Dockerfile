@@ -1,6 +1,5 @@
 # Escolha a imagem do Python3 mais recente baseada em Alpine
-FROM python:3.11.1-alpine3.16
-
+FROM python:3.3.12.0a4-slim-bullseye
 # Define o diretório de trabalho do container
 WORKDIR /app
 
@@ -8,7 +7,7 @@ WORKDIR /app
 COPY . /app
 
 # Instala o pip
-RUN apk update && pip3 install --upgrade pip
+RUN apt update && pip3 install --upgrade pip
 
 # Instala as dependências do aplicativo
 RUN pip3 install -r requirements.txt
