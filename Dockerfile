@@ -2,9 +2,9 @@
 FROM alpine:3.12
 
 # Atualize os pacotes existentes e instale o Python 3 e o pip
-RUN apk update -y && \
-    apk add python3 -y && \
-    apk add py3-pip -y apk update -y
+RUN apk update && \
+    apk add python3 && \
+    apk add py3-pip apk upgrade
 
 # Defina o diretório de trabalho
 WORKDIR /app
