@@ -1,19 +1,22 @@
-FROM python3.12.0a4-alpine3.17
+# Escolha a imagem do Python3 mais recente baseada em Alpine
+FROM python:3.10-alpine
 
-#define o responsável pela aplicação
-LABEL João Lucas Ferras
+# Define o diretório de trabalho do container
+WORKDIR /app
 
-#Atualiza o SO
-RUN apk update && apk upgrade --available -y
+# Copia todos os arquivos da raiz para o diretório /app
+COPY . /app
 
-#Instala o python3, pip3 e o git
-RUN apk add python3 python3-pip git -y
+# Instala o pip
+RUN apk update && apk add --no-cache \
+    build-base \
+    libffi-dev \
+    openssl-dev \
+    python3-dev && \
+    pip3 install --upgrade pip
 
-#vai para o diretório principal
-WORKDIR /
-
-#Instala o aplicativo
+# Instala as dependências do aplicativo
 RUN pip3 install -r requirements.txt
 
-# Entra na pasta do app (só é executado quando iniciamos o container)
-CMD [“python3”, “app.py”]
+# Define o comando para iniciar o aplicativo
+CMD ["python3", "app.py"]
